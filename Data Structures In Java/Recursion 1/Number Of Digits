@@ -1,0 +1,19 @@
+public class Solution {
+    public static int countDigits(int n){
+        // Write your code here.
+        
+        // Initialize a variable to store the count of digits
+        int count = 0;
+        
+        // Loop until n becomes zero
+        while (n > 0) {
+            // Increment the count by one
+            count++;
+            // Divide n by 10 to remove the last digit
+            n = n / 10;
+        }
+        
+        // Return the count of digits
+        return count;
+    }
+}
