@@ -1,0 +1,7 @@
+public class Solution {
+    public static int calculateASCII(char ch) {
+        // Cast the character to an int to obtain its ASCII value
+        int asciiValue = (int) ch;
+        return asciiValue;
+    }
+}
