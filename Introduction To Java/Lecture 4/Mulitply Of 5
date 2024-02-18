@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void multipleOf5(int n) {
+        if (n % 5 == 0) {
+            System.out.println("Multiple of 5");
+        } else {
+            System.out.println("Not a Multiple of 5");
+        }
+    }
+}
