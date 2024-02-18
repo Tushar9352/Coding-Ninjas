@@ -1,0 +1,29 @@
+public class solution {
+
+    // Array that contains all characters for a digit
+    static String[] numToChar = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    public static String[] keypad(int n){
+        if(n == 0){
+            String output[] = {""};
+            return output;
+        }
+
+        // Recursive call to the rest of the number
+        String smallOutput[] = keypad(n / 10);
+        String currentDigitChars = numToChar[n % 10];
+        
+        // Calculate size of new output array
+        String output[] = new String[smallOutput.length * currentDigitChars.length()];
+        
+        int k = 0;
+        for(int i = 0; i < smallOutput.length; i++){
+            for(int j = 0; j < currentDigitChars.length(); j++){
+                output[k] = smallOutput[i] + currentDigitChars.charAt(j);
+                k++;
+            }
+        }
+        
+        return output;
+    }
+}
