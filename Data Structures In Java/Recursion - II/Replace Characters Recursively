@@ -1,0 +1,19 @@
+public class Solution {
+
+	public static String replaceCharacter(String input, char c1, char c2) {
+		// Base case
+		if (input.length() <= 0) {
+			return input;
+		}
+
+		// Recursive case
+		String output = "";
+		if (input.charAt(0) == c1) {
+			output = output + c2;
+		} else {
+			output = output + input.charAt(0);
+		}
+
+		return output + replaceCharacter(input.substring(1), c1, c2);
+	}
+}
