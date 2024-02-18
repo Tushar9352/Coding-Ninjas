@@ -1,0 +1,12 @@
+public class Solution {
+
+	public static int findDuplicate(int[] arr) {
+		int sum = 0;
+		for(int i=0; i<arr.length; i++){
+			sum += arr[i];
+		}
+		int n = arr.length;
+		int sumToNMinusTwo = ((n - 2) * (n - 1)) / 2;
+		return sum - sumToNMinusTwo;
+	}
+}
