@@ -1,0 +1,12 @@
+public class Solution {
+    public static int[] reverseBetween(int n, int l, int r, int[] arr) {
+        while (l < r) {
+            int temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            l++;
+            r--;
+        }
+        return arr;
+    }
+}
