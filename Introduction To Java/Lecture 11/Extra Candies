@@ -1,0 +1,17 @@
+public class Solution {
+    public static int[] extraCandies(int n, int x, int[] p1, int[] p2) {
+        int[] result = new int[n];
+        long carry = 0;
+        for (int i = 0; i < n; i++) {
+            long total = p1[i] + p2[i] + carry;
+            if (total > x) {
+                carry = total - x;
+                result[i] = x;
+            } else {
+                carry = 0;
+                result[i] = (int) total;
+            }
+        }
+        return result;
+    }
+}
