@@ -1,0 +1,12 @@
+public class Solution {
+    public static String minLengthWord(String input) {
+        String[] words = input.split(" ");
+        String minWord = words[0];
+        for (int i = 1; i < words.length; i++) {
+            if (words[i].length() < minWord.length()) {
+                minWord = words[i];
+            }
+        }
+        return minWord;
+    }
+}
