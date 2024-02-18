@@ -1,0 +1,13 @@
+public class Solution {
+public static int[][] transpose(int m, int n, int[][] mat) {
+// New matrix to store transpose.
+int[][] transMat = new int[n][m];
+for (int i = 0; i < n; ++i) {
+for (int j = 0; j < m; ++j) {
+// Assign values.
+transMat[i][j] = mat[j][i];
+}
+}
+return transMat;
+}
+}
