@@ -1,0 +1,18 @@
+public class solution {
+
+	// Return the changed string
+	public static String removeX(String input){
+		// Base case
+		if (input.length() == 0) {
+			return input;
+		}
+
+		// Recursive case
+		String output = "";
+		if (input.charAt(0) != 'x') {
+			output = output + input.charAt(0);
+		}
+
+		return output + removeX(input.substring(1));
+	}
+}
