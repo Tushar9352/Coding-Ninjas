@@ -1,0 +1,23 @@
+public class solution {
+
+	public static int countZerosRec(int input){
+		// Base case
+		if(input < 10){
+			if(input == 0){
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		
+		// Recursive case
+		int lastDigit = input % 10;
+		int smallAns = countZerosRec(input / 10);
+		
+		if(lastDigit == 0){
+			return smallAns + 1;
+		} else {
+			return smallAns;
+		}
+	}
+}
