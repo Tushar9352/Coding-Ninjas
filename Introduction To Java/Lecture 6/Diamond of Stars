@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int mid = (n + 1) / 2;
+        int i = 1;
+        while (i <= mid) {
+            int spaces = mid - i;
+            int j = 1;
+            while (j <= spaces) {
+                System.out.print(' ');
+                j++;
+            }
+            j = 1;
+            while (j <= (2 * i) - 1) {
+                System.out.print('*');
+                j++;
+            }
+            System.out.println();
+            i++;
+        }
+        i = mid + 1;
+        while (i <= n) {
+            int spaces = i - mid;
+            int j = 1;
+            while (j <= spaces) {
+                System.out.print(' ');
+                j++;
+            }
+            j = 1;
+            while (j <= (2 * (n - i + 1)) - 1) {
+                System.out.print('*');
+                j++;
+            }
+            System.out.println();
+            i++;
+        }
+    }
+}
