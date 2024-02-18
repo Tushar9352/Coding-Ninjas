@@ -1,0 +1,16 @@
+public class Solution {
+
+	public static String removeConsecutiveDuplicates(String s) {
+		// Base case
+		if (s.length() <= 1) {
+			return s;
+		}
+
+		// Recursive case
+		if (s.charAt(0) == s.charAt(1)) {
+			return removeConsecutiveDuplicates(s.substring(1));
+		} else {
+			return s.charAt(0) + removeConsecutiveDuplicates(s.substring(1));
+		}
+	}
+}
