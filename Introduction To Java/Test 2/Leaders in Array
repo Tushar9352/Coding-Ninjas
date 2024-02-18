@@ -1,0 +1,14 @@
+public class Solution {
+    public static void leaders(int[] input) {
+        int n = input.length;
+        int max = Integer.MIN_VALUE;
+        String result = "";
+        for (int i = n - 1; i >= 0; i--) {
+            if (input[i] >= max) {
+                result = input[i] + " " + result;
+                max = input[i];
+            }
+        }
+        System.out.println(result);
+    }
+}
