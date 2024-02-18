@@ -1,0 +1,13 @@
+public class solution {
+
+    public static int convertStringToInt(String input){
+        if(input.length() == 0){
+            return 0;
+        }
+        
+        int smallAns = convertStringToInt(input.substring(1));
+        int lastDigit = input.charAt(0) - '0';
+        
+        return lastDigit * (int)Math.pow(10, input.length() - 1) + smallAns;
+    }
+}
