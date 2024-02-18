@@ -1,0 +1,41 @@
+public class Solution {
+    public static void quickSort(int[] input, int start, int end) {
+        if(start >= end){
+            return;
+        }
+        
+        int pivotPos = partition(input, start, end);
+        quickSort(input, start, pivotPos - 1);
+        quickSort(input, pivotPos + 1, end);
+    }
+    
+    private static int partition(int[] input, int start, int end){
+        int pivot = input[start];
+        int i = start;
+        int j = end;
+        
+        while(i < j){
+            while(i <= end && input[i] <= pivot){
+                i++;
+            }
+            
+            while(input[j] > pivot){
+                j--;
+            }
+            
+            if(i < j){
+                swap(input, i, j);
+            }
+        }
+        
+        swap(input, start, j);
+        
+        return j;
+    }
+    
+    private static void swap(int[] input, int i, int j){
+        int temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+    }
+}
