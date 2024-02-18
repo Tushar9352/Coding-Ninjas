@@ -1,0 +1,9 @@
+public class Solution {
+    public static String positiveOrNegative(int number) {
+        if (number < 0) {
+            return "Negative";
+        } else {
+            return "Positive";
+        }
+    }
+}
