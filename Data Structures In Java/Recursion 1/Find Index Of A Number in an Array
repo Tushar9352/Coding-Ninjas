@@ -1,0 +1,37 @@
+public class Solution {
+
+	public static int firstIndex(int input[], int x) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+		
+		// Base case: if the input array is empty, return -1
+		if (input.length == 0) {
+			return -1;
+		}
+		// Base case: if the first element of the input array is equal to x, return 0
+		if (input[0] == x) {
+			return 0;
+		}
+		// Recursive case: create a smaller array by removing the first element of the input array
+		int[] smaller = new int[input.length - 1];
+		for (int i = 0; i < smaller.length; i++) {
+			smaller[i] = input[i+1];
+		}
+		// Call the function on the smaller array and store the result
+		int result = firstIndex(smaller, x);
+		// If the result is -1, return -1
+		if (result == -1) {
+			return -1;
+		}
+		// Else, return the result plus 1 to account for the removed element
+		else {
+			return result + 1;
+		}
+		
+	}
+	
+}
