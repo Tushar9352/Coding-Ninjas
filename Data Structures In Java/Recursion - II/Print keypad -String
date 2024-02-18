@@ -1,0 +1,21 @@
+public class solution {
+
+    // Array that contains all characters for a digit
+    static String[] numToChar = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    public static void printKeypad(int input){
+        printKeypad(input, "");
+    }
+
+    private static void printKeypad(int input, String outputSoFar){
+        if(input == 0){
+            System.out.println(outputSoFar);
+            return;
+        }
+        
+        String currentDigitChars = numToChar[input % 10];
+        for(int i = 0; i < currentDigitChars.length(); i++){
+            printKeypad(input / 10, currentDigitChars.charAt(i) + outputSoFar);
+        }
+    }
+}
