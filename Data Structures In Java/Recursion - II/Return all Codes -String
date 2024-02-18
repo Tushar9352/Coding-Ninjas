@@ -1,0 +1,39 @@
+public class solution {
+
+    public static  String[] getCode(String input){
+        if(input.length() == 0){
+            String output[] = {""};
+            return output;
+        }
+        
+        String firstOutput[] = getCode(input.substring(1));
+        char firstChar = (char)('a' + Integer.parseInt(input.charAt(0) + "") - 1);
+        for(int i = 0; i < firstOutput.length; i++){
+            firstOutput[i] = firstChar + firstOutput[i];
+        }
+        
+        String secondOutput[] = new String[0];
+        if(input.length() >= 2){
+            int secondNumber = Integer.parseInt(input.substring(0, 2));
+            if(secondNumber >= 10 && secondNumber <= 26){
+                secondOutput = getCode(input.substring(2));
+                char secondChar = (char)('a' + secondNumber - 1);
+                for(int i = 0; i < secondOutput.length; i++){
+                    secondOutput[i] = secondChar + secondOutput[i];
+                }
+            }
+        }
+        
+        String output[] = new String[firstOutput.length + secondOutput.length];
+        int k = 0;
+        for(int i = 0; i < firstOutput.length; i++){
+            output[k++] = firstOutput[i];
+        }
+        
+        for(int i = 0; i < secondOutput.length; i++){
+            output[k++] = secondOutput[i];
+        }
+        
+        return output;
+    }
+}
