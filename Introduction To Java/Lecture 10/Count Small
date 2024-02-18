@@ -1,0 +1,15 @@
+public class Solution {
+    public static int[] countS(int n, int m, int[] a, int[] b) {
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < m; j++) {
+                if (b[j] <= a[i]) {
+                    count++;
+                }
+            }
+            result[i] = count;
+        }
+        return result;
+    }
+}
