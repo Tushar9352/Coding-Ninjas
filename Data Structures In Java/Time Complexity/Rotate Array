@@ -1,0 +1,20 @@
+public class Solution {  
+
+    public static void rotate(int[] arr, int d) {
+        // Create a temporary array to store the first 'd' elements
+        int[] temp = new int[d];
+        for(int i=0; i<d; i++) {
+            temp[i] = arr[i];
+        }
+
+        // Shift the remaining elements of the array to the left
+        for(int i=d; i<arr.length; i++) {
+            arr[i-d] = arr[i];
+        }
+
+        // Copy the 'd' elements from the temporary array to the end of the array
+        for(int i=0; i<d; i++) {
+            arr[arr.length-d+i] = temp[i];
+        }
+    }
+}
