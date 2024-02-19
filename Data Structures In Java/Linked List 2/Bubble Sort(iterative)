@@ -1,0 +1,40 @@
+public class Solution {
+    public static int length(Node<Integer> head){
+        int count = 0;
+        Node<Integer> temp = head;
+        while(temp != null){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+
+    public static Node<Integer> bubbleSort(Node<Integer> head) {
+        int n = length(head);
+
+        for(int i = 0; i < n - 1; i++){
+            Node<Integer> prev = null, curr = head;
+            for(int j = 0; j < n - i - 1; j++){
+                if(curr.data <= curr.next.data){
+                    prev = curr;
+                    curr = curr.next;
+                } else {
+                    if(prev == null){
+                        Node<Integer> nextNode = curr.next;
+                        curr.next = nextNode.next;
+                        nextNode.next = curr;
+                        head = nextNode;
+                        prev = nextNode;
+                    } else {
+                        Node<Integer> nextNode = curr.next;
+                        prev.next = nextNode;
+                        curr.next = nextNode.next;
+                        nextNode.next = curr;
+                        prev = nextNode;
+                    }
+                }
+            }
+        }
+        return head;
+    }
+}
