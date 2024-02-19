@@ -1,0 +1,20 @@
+public class solution {
+    public static boolean splitArray(int input[]) {
+        return helper(input, 0, 0, 0);
+    }
+
+    private static boolean helper(int[] input, int index, int sum1, int sum2) {
+        if (index == input.length) {
+            return sum1 == sum2;
+        }
+
+        if (input[index] % 5 == 0) {
+            return helper(input, index + 1, sum1 + input[index], sum2);
+        } else if (input[index] % 3 == 0) {
+            return helper(input, index + 1, sum1, sum2 + input[index]);
+        } else {
+            return helper(input, index + 1, sum1 + input[index], sum2) || 
+                   helper(input, index + 1, sum1, sum2 + input[index]);
+        }
+    }
+}
