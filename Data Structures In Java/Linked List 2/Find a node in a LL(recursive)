@@ -1,0 +1,17 @@
+public class Solution {
+    public static int findNodeRec(Node<Integer> head, int n) {
+        return findNodeRec(head, n, 0);
+    }
+
+    private static int findNodeRec(Node<Integer> head, int n, int index) {
+        if (head == null) {
+            return -1;
+        }
+
+        if (head.data == n) {
+            return index;
+        }
+
+        return findNodeRec(head.next, n, index + 1);
+    }
+}
