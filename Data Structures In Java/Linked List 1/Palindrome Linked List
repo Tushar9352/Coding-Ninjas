@@ -1,0 +1,38 @@
+public class Solution {
+    public static boolean isPalindrome(Node<Integer> head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // Find the middle of the linked list
+        Node<Integer> slow = head;
+        Node<Integer> fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Reverse the second half of the linked list
+        Node<Integer> secondHalfHead = slow.next;
+        Node<Integer> prev = null;
+        while (secondHalfHead != null) {
+            Node<Integer> next = secondHalfHead.next;
+            secondHalfHead.next = prev;
+            prev = secondHalfHead;
+            secondHalfHead = next;
+        }
+
+        // Check if the first half and the reversed second half are identical
+        Node<Integer> firstHalfHead = head;
+        secondHalfHead = prev;
+        while (firstHalfHead != null && secondHalfHead != null) {
+            if (!firstHalfHead.data.equals(secondHalfHead.data)) {
+                return false;
+            }
+            firstHalfHead = firstHalfHead.next;
+            secondHalfHead = secondHalfHead.next;
+        }
+
+        return true;
+    }
+}
