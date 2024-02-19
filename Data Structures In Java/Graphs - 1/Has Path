@@ -1,0 +1,49 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Solution {
+    public static boolean hasPath(int[][] edges, int v1, int v2, boolean[] visited) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v1);
+        visited[v1] = true;
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            if (currentVertex == v2) {
+                return true;
+            }
+            for (int i = 0; i < edges.length; i++) {
+                if (edges[currentVertex][i] == 1 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] strNums = br.readLine().split("\\s");
+        int v = Integer.parseInt(strNums[0]);
+        int e = Integer.parseInt(strNums[1]);
+
+        int[][] edges = new int[v][v];
+        for (int i = 0; i < e; i++) {
+            String[] inputs = br.readLine().split("\\s");
+            int fv = Integer.parseInt(inputs[0]);
+            int sv = Integer.parseInt(inputs[1]);
+            edges[fv][sv] = 1;
+            edges[sv][fv] = 1;
+        }
+
+        String[] vstr = br.readLine().split("\\s");
+        int v1 = Integer.parseInt(vstr[0]);
+        int v2 = Integer.parseInt(vstr[1]);
+
+        boolean[] visited = new boolean[edges.length];
+        System.out.println(hasPath(edges, v1, v2, visited));
+    }
+}
