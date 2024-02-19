@@ -1,0 +1,41 @@
+public class Solution {
+    static int[][] dir = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+
+    public static int dfs(int[][] cake, int x, int y, boolean[][] visited) {
+        int n = cake.length;
+        // Mark the cell as visited
+        visited[x][y] = true;
+        int size = 1;
+
+        // Explore all directions
+        for (int[] d : dir) {
+            int newX = x + d[0];
+            int newY = y + d[1];
+
+            // Check if the new position is valid and has a '1'
+            if (newX >= 0 && newX < n && newY >= 0 && newY < n && cake[newX][newY] == 1 && !visited[newX][newY]) {
+                size += dfs(cake, newX, newY, visited);
+            }
+        }
+
+        return size;
+    }
+
+    public static int solve(int[][] cake) {
+        int n = cake.length;
+        boolean[][] visited = new boolean[n][n];
+        int maxPiece = 0;
+
+        // Traverse the entire cake
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // If we find a '1' and it's not visited yet, perform DFS from there
+                if (cake[i][j] == 1 && !visited[i][j]) {
+                    maxPiece = Math.max(maxPiece, dfs(cake, i, j, visited));
+                }
+            }
+        }
+
+        return maxPiece;
+    }
+}
