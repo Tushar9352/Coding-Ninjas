@@ -1,0 +1,52 @@
+public class Solution {
+    private static int[] xMove = {-1, -1, -1, 0, 0, 1, 1, 1};
+    private static int[] yMove = {-1, 0, 1, -1, 1, -1, 0, 1};
+    private static String word = "CODINGNINJA";
+
+    private static boolean isSafe(int x, int y, int[][] visited, String[] Graph, int index) {
+        return (x >= 0 && x < Graph.length && y >= 0 && y < Graph[0].length() && visited[x][y] == 0 && Graph[x].charAt(y) == word.charAt(index));
+    }
+
+    private static boolean searchWord(String[] Graph, int[][] visited, int i, int j, int index) {
+        if (index == word.length()) {
+            return true;
+        }
+
+        for (int k = 0; k < 8; k++) {
+            int row = i + xMove[k];
+            int col = j + yMove[k];
+
+            if (isSafe(row, col, visited, Graph, index)) {
+                visited[row][col] = 1;
+
+                if (searchWord(Graph, visited, row, col, index + 1)) {
+                    return true;
+                }
+
+                visited[row][col] = 0;
+            }
+        }
+
+        return false;
+    }
+
+    public static int solve(String[] Graph, int N, int M) {
+        int[][] visited = new int[N][M];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (Graph[i].charAt(j) == 'C') {
+                    visited[i][j] = 1;
+
+                    if (searchWord(Graph, visited, i, j, 1)) {
+                        return 1;
+                    }
+
+                    visited[i][j] = 0;
+                }
+            }
+        }
+
+        return 0;
+    }
+}
