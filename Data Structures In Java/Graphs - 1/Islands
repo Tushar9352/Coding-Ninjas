@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Solution {
+    private static void dfs(int[][] edges, boolean[] visited, int sv) {
+        visited[sv] = true;
+        int n = edges.length;
+        for (int i = 0; i < n; i++) {
+            if (edges[sv][i] == 1 && !visited[i]) {
+                dfs(edges, visited, i);
+            }
+        }
+    }
+
+    public static int numConnected(int[][] edges, int n) {
+        boolean[] visited = new boolean[n];
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(edges, visited, i);
+                count++;
+            }
+        }
+        return count;
+    }
+}
