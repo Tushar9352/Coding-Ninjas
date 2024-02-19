@@ -1,0 +1,29 @@
+import java.util.*;
+
+class TreeNode {
+    int data;
+    ArrayList<TreeNode> children;
+
+    public TreeNode(int data) {
+        this.data = data;
+        this.children = new ArrayList<>();
+    }
+}
+
+public TreeNode makeTree(int[] arr, int size) {
+    if(arr == null || size <= 0) return null;
+    int i = 0;
+    Queue<TreeNode> q = new LinkedList<>();
+    TreeNode root = new TreeNode(arr[i++]);
+    q.add(root);
+    while(!q.isEmpty()) {
+        TreeNode curr = q.poll();
+        int child = arr[i++];
+        for(int j = 0; j < child; j++) {
+            TreeNode node = new TreeNode(arr[i++]);
+            curr.children.add(node);
+            q.add(node);
+        }
+    }
+    return root;
+}
