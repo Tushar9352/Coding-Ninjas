@@ -1,0 +1,17 @@
+import java.util.array;
+public class Solution {
+    public static boolean reachDestination(int sx, int sy, int dx, int dy) {
+        while (dx != sx || dy != sy) {
+            if (dx > dy) {
+                if(dy == sy)
+                    return (dx - sx) % dy == 0;
+                dx %= dy;
+            } else {
+                if(dx == sx)
+                    return (dy - sy) % dx == 0;
+                dy %= dx;
+            }
+        }
+        return true;
+    }
+}
