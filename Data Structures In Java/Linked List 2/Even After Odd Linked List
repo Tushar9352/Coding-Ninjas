@@ -1,0 +1,46 @@
+public class Solution {
+    public static Node<Integer> evenAfterOdd(Node<Integer> head) {
+        if (head == null) {
+            return head;
+        }
+
+        Node<Integer> oddHead = null, oddTail = null;
+        Node<Integer> evenHead = null, evenTail = null;
+        Node<Integer> currentNode = head;
+
+        while (currentNode != null) {
+            int value = currentNode.data;
+
+            if (value % 2 == 0) {
+                if (evenHead == null) {
+                    evenHead = currentNode;
+                    evenTail = currentNode;
+                } else {
+                    evenTail.next = currentNode;
+                    evenTail = evenTail.next;
+                }
+            } else {
+                if (oddHead == null) {
+                    oddHead = currentNode;
+                    oddTail = currentNode;
+                } else {
+                    oddTail.next = currentNode;
+                    oddTail = oddTail.next;
+                }
+            }
+            currentNode = currentNode.next;
+        }
+
+        if (oddHead == null) {
+            return evenHead;
+        } else {
+            oddTail.next = evenHead;
+        }
+
+        if (evenHead != null) {
+            evenTail.next = null;
+        }
+
+        return oddHead;
+    }
+}
