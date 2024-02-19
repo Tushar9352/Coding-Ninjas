@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Solution {
+    static int[] dx = {-1, 0, 1, 0, -1, -1, 1, 1};
+    static int[] dy = {0, 1, 0, -1, -1, 1, -1, 1};
+    static int n, m;
+    static String[] board;
+    static boolean[][] visited;
+
+    static boolean isInside(int x, int y) {
+        return (x >= 0 && x < n && y >= 0 && y < m);
+    }
+
+    static boolean dfs(int x, int y, int fromX, int fromY, char color) {
+        if (!isInside(x, y)) return false;
+        if (board[x].charAt(y) != color) return false;
+        if (visited[x][y]) return true;
+
+        visited[x][y] = true;
+        for (int f = 0; f < 4; ++f) {
+            int nextX = x + dx[f];
+            int nextY = y + dy[f];
+
+            if (nextX == fromX && nextY == fromY) continue;
+            if (dfs(nextX, nextY, x, y, color)) return true;
+        }
+
+        return false;
+    }
+
+    public static int solve(String[] Board, int N, int M) {
+        n = N;
+        m = M;
+        board = Board;
+        visited = new boolean[n][m];
+
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (visited[i][j]) continue;
+                boolean cycle = dfs(i, j, -1, -1, board[i].charAt(j));
+                if (cycle) return 1;
+            }
+        }
+
+        return 0;
+    }
+}
