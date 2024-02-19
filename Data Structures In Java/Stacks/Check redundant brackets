@@ -1,0 +1,47 @@
+import java.util.Stack;
+
+public class Solution {
+    public static boolean checkRedundantBrackets(String expression) {
+        Stack<Character> mainStack = new Stack<>();
+        Stack<Character> tempStack = new Stack<>();
+
+        for (char ch : expression.toCharArray()) {
+            if (ch != ')') {
+                mainStack.push(ch);
+            } else {
+                while (mainStack.peek() != '(') {
+                    tempStack.push(mainStack.pop());
+                }
+                mainStack.pop(); // popping out the '(' symbol
+                if (tempStack.isEmpty() || (tempStack.size() == 1 && !Character.isDigit(tempStack.peek()))) {
+                    return true;
+                }
+                while (!tempStack.isEmpty()) {
+                    mainStack.push(tempStack.pop());
+                }
+            }
+        }
+
+        // Resetting the stacks for the next method
+        mainStack.clear();
+        tempStack.clear();
+
+        for (int i = 0; i < expression.length(); i++) {
+            char currentChar = expression.charAt(i);
+
+            if (currentChar != ')') {
+                mainStack.push(currentChar);
+            } else {
+                if (mainStack.peek() == '(') {
+                    return true;
+                } else {
+                    while (mainStack.peek() != '(') {
+                        mainStack.pop();
+                    }
+                    mainStack.pop();
+                }
+            }
+        }
+        return false;
+    }
+}
