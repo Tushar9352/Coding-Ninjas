@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Solution {
+    static int closest;
+    public static int closestCost(int n, int m, ArrayList<Integer> baseCosts, ArrayList<Integer> toppings, int target) {
+        closest = baseCosts.get(0);
+        for (int base : baseCosts) {
+            dfs(toppings, 0, base, target);
+        }
+        return closest;
+    }
+
+    private static void dfs(ArrayList<Integer> toppings, int i, int current, int target) {
+        if (Math.abs(target - current) < Math.abs(target - closest) || (Math.abs(target - current) == Math.abs(target - closest) && current < closest)) {
+            closest = current;
+        }
+        if (i == toppings.size() || current > target) {
+            return;
+        }
+        dfs(toppings, i + 1, current, target);
+        dfs(toppings, i + 1, current + toppings.get(i), target);
+        dfs(toppings, i + 1, current + 2 * toppings.get(i), target);
+    }
+}
