@@ -1,0 +1,27 @@
+public class Solution {
+    public static Node<Integer> skipMdeleteN(Node<Integer> head, int M, int N) {
+        if (M == 0) {
+            return null;
+        }
+        if (head == null || N < 0 || M < 0) {
+            return head;
+        }
+        Node<Integer> current = head;
+        Node<Integer> temp = null;
+        while (current != null) {
+            for (int count = 1; count < M && current != null; count++) {
+                current = current.next;
+            }
+            if (current == null) {
+                return head;
+            }
+            temp = current.next;
+            for (int count = 1; count <= N && temp != null; count++) {
+                temp = temp.next;
+            }
+            current.next = temp;
+            current = temp;
+        }
+        return head;
+    }
+}
