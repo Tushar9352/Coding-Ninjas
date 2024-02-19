@@ -1,0 +1,31 @@
+public class Solution {
+    public static int getMin(int arr[], int N) {
+        int left[] = new int[N];
+        int right[] = new int[N];
+
+        // Traverse from left
+        left[0] = 1;
+        for (int i = 1; i < N; i++) {
+            if (arr[i] > arr[i - 1])
+                left[i] = left[i - 1] + 1;
+            else
+                left[i] = 1;
+        }
+
+        // Traverse from right
+        right[N - 1] = left[N - 1];
+        for (int i = N - 2; i >= 0; i--) {
+            if (arr[i] > arr[i + 1])
+                right[i] = Math.max(left[i], right[i + 1] + 1);
+            else
+                right[i] = Math.max(left[i], 1);
+        }
+
+        // Find total number of chocolates
+        int sum = 0;
+        for (int i = 0; i < N; i++)
+            sum += right[i];
+
+        return sum;
+    }
+}
