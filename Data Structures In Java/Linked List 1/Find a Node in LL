@@ -1,0 +1,14 @@
+public class Solution {
+    public static int findNode(Node<Integer> head, int n) {
+        Node<Integer> temp = head;
+        int index = 0;
+        while (temp != null) {
+            if (temp.data.equals(n)) {
+                return index;
+            }
+            index++;
+            temp = temp.next;
+        }
+        return -1;  // Element not found
+    }
+}
