@@ -1,0 +1,19 @@
+public class Solution {
+    public static Node<Integer> removeDuplicates(Node<Integer> head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node<Integer> current = head;
+
+        while (current != null && current.next != null) {
+            if (current.data.equals(current.next.data)) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+}
