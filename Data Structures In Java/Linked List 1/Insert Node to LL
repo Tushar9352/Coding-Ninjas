@@ -1,0 +1,20 @@
+public class Solution {
+    public static Node<Integer> insert(Node<Integer> head, int pos, int data){
+        Node<Integer> newNode = new Node<Integer>(data);
+        if(pos == 0){
+            newNode.next = head;
+            return newNode;
+        }
+        int count = 0;
+        Node<Integer> temp = head;
+        while(temp != null && count < pos - 1){
+            temp = temp.next;
+            count++;
+        }
+        if(temp != null){
+            newNode.next = temp.next;
+            temp.next = newNode;
+        }
+        return head;
+    }
+}
