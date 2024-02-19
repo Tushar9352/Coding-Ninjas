@@ -1,0 +1,19 @@
+public class Solution {
+    public static boolean checkSequence(String a, String b) {
+        // Base case: If b is empty, return true
+        if (b.length() == 0) {
+            return true;
+        }
+        // Base case: If a is empty but b is not, return false
+        if (a.length() == 0) {
+            return false;
+        }
+        // If the current characters match, move to the next character in both strings
+        if (a.charAt(0) == b.charAt(0)) {
+            return checkSequence(a.substring(1), b.substring(1));
+        } else {
+            // If the current characters don't match, move to the next character in a
+            return checkSequence(a.substring(1), b);
+        }
+    }
+}
