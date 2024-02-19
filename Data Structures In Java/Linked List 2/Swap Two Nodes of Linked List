@@ -1,0 +1,41 @@
+public class Solution {
+    public static Node<Integer> swapNodes(Node<Integer> head, int i, int j) {
+        if (i == j) {
+            return head;
+        }
+
+        Node<Integer> prevNodeI = null, nodeI = head;
+        for (int count = 0; nodeI != null && count < i; count++) {
+            prevNodeI = nodeI;
+            nodeI = nodeI.next;
+        }
+
+        Node<Integer> prevNodeJ = null, nodeJ = head;
+        for (int count = 0; nodeJ != null && count < j; count++) {
+            prevNodeJ = nodeJ;
+            nodeJ = nodeJ.next;
+        }
+
+        if (nodeI == null || nodeJ == null) {
+            return head;
+        }
+
+        if (prevNodeI != null) {
+            prevNodeI.next = nodeJ;
+        } else {
+            head = nodeJ;
+        }
+
+        if (prevNodeJ != null) {
+            prevNodeJ.next = nodeI;
+        } else {
+            head = nodeI;
+        }
+
+        Node<Integer> temp = nodeI.next;
+        nodeI.next = nodeJ.next;
+        nodeJ.next = temp;
+
+        return head;
+    }
+}
