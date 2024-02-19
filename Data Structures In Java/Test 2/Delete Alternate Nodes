@@ -1,0 +1,13 @@
+public class Solution {
+    public static void deleteAlternateNodes(Node<Integer> head) {
+        if (head == null) {
+            return;
+        }
+
+        Node<Integer> node = head;
+        while (node != null && node.next != null) {
+            node.next = node.next.next;
+            node = node.next;
+        }
+    }
+}
