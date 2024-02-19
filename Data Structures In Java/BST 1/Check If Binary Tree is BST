@@ -1,0 +1,17 @@
+public class Solution {
+    public static boolean isBST(BinaryTreeNode<Integer> root) {
+        return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private static boolean isBST(BinaryTreeNode<Integer> node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+
+        if (node.data < min || node.data > max) {
+            return false;
+        }
+
+        return isBST(node.left, min, node.data - 1) && isBST(node.right, node.data, max);
+    }
+}
